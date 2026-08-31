@@ -9,8 +9,8 @@ a) el /los sensores con la mayor temperatura registrada mostrando todos sus dato
 b) el promedio de las temperaturas de todos los sensores
 
 1
-techo
-40.5
+cocina
+20
 2
 living
 27.2
@@ -18,8 +18,8 @@ living
 heladera
 3
 4
-cocina
-20
+techo
+40.5
 5
 garage
 38
@@ -44,12 +44,14 @@ void LeerTexto(char[], int);
 void CargaSensor(Sensor[], int);
 void MayorTemp(Sensor[], int);
 void PromTemps(Sensor[], int);
+void Mostrar(Sensor[], int);
 
 int main(){
     Sensor sensor[5];
     CargaSensor(sensor, TAM);
     MayorTemp(sensor, TAM);
     PromTemps(sensor, TAM);
+    Mostrar(sensor, TAM);
     printf("\n");
     system("pause");
     return 0;
@@ -73,7 +75,7 @@ void CargaSensor(Sensor sen[], int ce){
         getchar();
         LeerTexto(sen[i].ubi, 31);
         printf("Ingresar la temperatura: ");
-        scanf("%d", &sen[i].temp);
+        scanf("%f", &sen[i].temp);
     }
 }
 
@@ -97,4 +99,14 @@ void PromTemps(Sensor sen[], int ce){
     for(i=0;i<ce;i++)
         suma += sen[i].temp;
     printf("El promedio de las temperaturas es: %f", suma/ce);
+}
+
+void Mostrar(Sensor sen[], int ce){
+    int i;
+    for(i=0;i<ce;i++){
+        printf("\nPosicion(%d)\n", i);
+        printf("Numero de sensor: %d\n", sen[i].s);
+        printf("Ubicacion del sensor: %s\n", sen[i].ubi);
+        printf("Temperatura del sensor: %f\n", sen[i].temp);
+    }
 }
